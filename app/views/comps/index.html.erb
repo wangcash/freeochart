@@ -1,0 +1,37 @@
+<h1>Listing comps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comp</th>
+      <th>Comp name</th>
+      <th>Area code</th>
+      <th>Tel</th>
+      <th>Www</th>
+      <th>Brief</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comps.each do |comp| %>
+      <tr>
+        <td><%= comp.comp_id %></td>
+        <td><%= comp.comp_name %></td>
+        <td><%= comp.area_code %></td>
+        <td><%= comp.tel %></td>
+        <td><%= comp.www %></td>
+        <td><%= comp.brief %></td>
+        <td><%= link_to 'Show', comp %></td>
+        <td><%= link_to 'Edit', edit_comp_path(comp) %></td>
+        <td><%= link_to 'Destroy', comp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comp', new_comp_path %>
