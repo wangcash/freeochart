@@ -61,23 +61,35 @@ class CompsController < ApplicationController
     end
   end
 
+  # 接口入口
+  def comp
+    operation = params[:operation]
+    if operation == "search"
+      key = params[:name]
+      search_companys(key)
+    elsif operation == "get"
+      comp_id = params[:comp_id]
+      get_company(comp_id)
+    else
+      all_companys
+    end
+  end
+
   # 获取所有公司
-  def comps
+  def all_companys
     comps = Comp.all
     render json: comps
   end
 
   # 搜索公司
-  def comps_query
-    query = params[:query]
-    p query
-    comps = Comp.where("upper(comp_name) like upper('%#{query}%')")
+  def search_companys(key)
+    p key
+    comps = Comp.where("upper(comp_name) like upper('%#{key}%')")
     render json: comps
   end
 
-  # 获取公司信息
-  def comp
-    comp_id = params[:comp_id]
+  # 获取公司
+  def get_company(comp_id)
     comp = Comp.where(["comp_id=?", comp_id])
     render json: comp
   end
