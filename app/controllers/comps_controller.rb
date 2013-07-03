@@ -111,7 +111,7 @@ class CompsController < ApplicationController
 
     ocharts = Ochart.where(["comp_id=?", comp_id])
     ocharts.each do |var|
-      company_ocharts.push({ochart_id:var[:ochart_id], department_name:var[:ochart_id], parent_id:var[:parent_id]})
+      company_ocharts.push({ochart_id:var[:ochart_id], department_name:var[:department_name], parent_id:var[:parent_id]})
     end
     company[:ochart] = company_ocharts
 
