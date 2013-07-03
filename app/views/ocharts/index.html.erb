@@ -1,0 +1,33 @@
+<h1>Listing ocharts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ochart</th>
+      <th>Department name</th>
+      <th>Parent</th>
+      <th>Comp</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ocharts.each do |ochart| %>
+      <tr>
+        <td><%= ochart.ochart_id %></td>
+        <td><%= ochart.department_name %></td>
+        <td><%= ochart.parent_id %></td>
+        <td><%= ochart.comp_id %></td>
+        <td><%= link_to 'Show', ochart %></td>
+        <td><%= link_to 'Edit', edit_ochart_path(ochart) %></td>
+        <td><%= link_to 'Destroy', ochart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ochart', new_ochart_path %>

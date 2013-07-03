@@ -90,8 +90,32 @@ class CompsController < ApplicationController
 
   # 获取公司
   def get_company(comp_id)
-    comp = Comp.where(["comp_id=?", comp_id])
-    render json: comp
+    comps = Comp.where(["comp_id=?", comp_id])
+    comp = comps.first
+
+    if comp.nil?
+      render json: nil
+      return
+    end
+
+    company = {
+      comp_id:  comp[:comp_id],
+      comp_name:comp[:comp_name],
+      area_code:comp[:area_code],
+      tel:      comp[:tel],
+      www:      comp[:www],
+      brief:    comp[:brief],
+    }
+
+    company_ocharts = Array.new
+
+    ocharts = Ochart.where(["comp_id=?", comp_id])
+    ocharts.each do |var|
+      company_ocharts.push({ochart_id:var[:ochart_id], department_name:var[:ochart_id], parent_id:var[:parent_id]})
+    end
+    company[:ochart] = company_ocharts
+
+    render json: company
   end
 
   private

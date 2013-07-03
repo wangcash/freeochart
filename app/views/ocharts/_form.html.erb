@@ -1,0 +1,33 @@
+<%= form_for(@ochart) do |f| %>
+  <% if @ochart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ochart.errors.count, "error") %> prohibited this ochart from being saved:</h2>
+
+      <ul>
+      <% @ochart.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ochart_id %><br>
+    <%= f.text_field :ochart_id %>
+  </div>
+  <div class="field">
+    <%= f.label :department_name %><br>
+    <%= f.text_field :department_name %>
+  </div>
+  <div class="field">
+    <%= f.label :parent_id %><br>
+    <%= f.text_field :parent_id %>
+  </div>
+  <div class="field">
+    <%= f.label :comp_id %><br>
+    <%= f.text_field :comp_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

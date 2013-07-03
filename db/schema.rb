@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130701050017) do
+ActiveRecord::Schema.define(version: 20130703023032) do
 
   create_table "comps", force: true do |t|
     t.string   "comp_id"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20130701050017) do
     t.string   "tel"
     t.string   "www"
     t.string   "brief"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ocharts", force: true do |t|
+    t.string   "ochart_id"
+    t.string   "department_name"
+    t.string   "parent_id"
+    t.string   "comp_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

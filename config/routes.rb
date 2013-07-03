@@ -1,11 +1,9 @@
 Freeochart::Application.routes.draw do
+  resources :ocharts
+
   resources :comps
 
-  # 公司搜索
-  # 请求： /ochart/comp/comp.do?operation=search&name=惠普
-  # 公司数据
-  # 请求： /ochart/comp/comp.do?operation=get&comp_id=09df-78ee-ed43-2345
-  get "ochart/comp/comp.do" => "comps#comp"
+  get "/ochart/company/company_searchComp.do" => "comps#comp"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

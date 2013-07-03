@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ochart_id: MyString
+  department_name: MyString
+  parent_id: MyString
+  comp_id: MyString
+
+two:
+  ochart_id: MyString
+  department_name: MyString
+  parent_id: MyString
+  comp_id: MyString
