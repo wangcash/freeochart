@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130703023032) do
+ActiveRecord::Schema.define(version: 20130723053130) do
+
+  create_table "bids", force: true do |t|
+    t.string   "bid_name"
+    t.string   "bid_organ_id"
+    t.string   "bid_amount"
+    t.string   "bid_number"
+    t.date     "bid_begin_date"
+    t.date     "bid_finish_date"
+    t.string   "city_id"
+    t.string   "products_id"
+    t.text     "bid_content"
+    t.string   "bid_link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comps", force: true do |t|
     t.string   "comp_id"

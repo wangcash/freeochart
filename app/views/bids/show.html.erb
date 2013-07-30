@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bid name:</strong>
+  <%= @bid.bid_name %>
+</p>
+
+<p>
+  <strong>Bid organ:</strong>
+  <%= @bid.bid_organ_id %>
+</p>
+
+<p>
+  <strong>Bid amount:</strong>
+  <%= @bid.bid_amount %>
+</p>
+
+<p>
+  <strong>Bid number:</strong>
+  <%= @bid.bid_number %>
+</p>
+
+<p>
+  <strong>Bid begin date:</strong>
+  <%= @bid.bid_begin_date %>
+</p>
+
+<p>
+  <strong>Bid finish date:</strong>
+  <%= @bid.bid_finish_date %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @bid.city_id %>
+</p>
+
+<p>
+  <strong>Products:</strong>
+  <%= @bid.products_id %>
+</p>
+
+<p>
+  <strong>Bid content:</strong>
+  <%= @bid.bid_content %>
+</p>
+
+<p>
+  <strong>Bid link:</strong>
+  <%= @bid.bid_link %>
+</p>
+
+<%= link_to 'Edit', edit_bid_path(@bid) %> |
+<%= link_to 'Back', bids_path %>

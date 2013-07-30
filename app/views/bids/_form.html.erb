@@ -1,0 +1,57 @@
+<%= form_for(@bid) do |f| %>
+  <% if @bid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+
+      <ul>
+      <% @bid.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bid_name %><br>
+    <%= f.text_field :bid_name %>
+  </div>
+  <div class="field">
+    <%= f.label :bid_organ_id %><br>
+    <%= f.select :bid_organ_id, options_from_collection_for_select(@comps, 'comp_id', 'comp_name') %>
+  </div>
+  <div class="field">
+    <%= f.label :bid_amount %><br>
+    <%= f.text_field :bid_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :bid_number %><br>
+    <%= f.text_field :bid_number %>
+  </div>
+  <div class="field">
+    <%= f.label :bid_begin_date %><br>
+    <%= f.date_select :bid_begin_date %>
+  </div>
+  <div class="field">
+    <%= f.label :bid_finish_date %><br>
+    <%= f.date_select :bid_finish_date %>
+  </div>
+  <div class="field">
+    <%= f.label :city_id %><br>
+    <%= f.select :city_id, options_from_collection_for_select(@cities, 'id', 'name') %>
+  </div>
+  <div class="field">
+    <%= f.label :products_id %><br>
+    <%= f.select :products_id, options_from_collection_for_select(@products, 'id', 'name') %>
+  </div>
+  <div class="field">
+    <%= f.label :bid_content %><br>
+    <%= f.text_area :bid_content %>
+  </div>
+  <div class="field">
+    <%= f.label :bid_link %><br>
+    <%= f.text_field :bid_link %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,9 +1,11 @@
 Freeochart::Application.routes.draw do
-  resources :ocharts
+
+  get "/ochart/company/company_searchComp.do"  => "proxy#comp"
+  get "/bids/bids/bids_findBidsByCondition.do" => "proxy#bid"
 
   resources :comps
-
-  get "/ochart/company/company_searchComp.do" => "comps#comp"
+  resources :ocharts
+  resources :bids
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

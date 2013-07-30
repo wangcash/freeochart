@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bid_name: MyString
+  bid_organ_id: MyString
+  bid_amount: MyString
+  bid_number: MyString
+  bid_begin_date: 2013-07-23
+  bid_finish_date: 2013-07-23
+  city_id: MyString
+  products_id: MyString
+  bid_content: MyText
+  bid_link: MyString
+
+two:
+  bid_name: MyString
+  bid_organ_id: MyString
+  bid_amount: MyString
+  bid_number: MyString
+  bid_begin_date: 2013-07-23
+  bid_finish_date: 2013-07-23
+  city_id: MyString
+  products_id: MyString
+  bid_content: MyText
+  bid_link: MyString
