@@ -5,27 +5,39 @@ class ProxyController < ApplicationController
     return 'http://192.168.1.201:8090'
   end
 
+  def transmit(url)
+    puts "#{url}"
+
+    begin
+      res  = open(URI.encode(url))
+      data = JSON.parse(res.read)
+      puts "========== #{data.class} =========="
+      puts data
+    rescue  StandardError,Timeout::Error, SystemCallError, Errno::ECONNREFUSED
+      10.times do |variable|
+        puts '老杨还没开机呢....'
+      end
+      data = nil
+    end
+
+    return data
+  end
+
   def comp
     operation = params[:operation]
 
     if operation == "search"
-      key = params[:key]
-      res = open(URI.encode("#{host}/ochart/company/company_searchComp.do?operation=#{operation}&key=#{key}"))
-      data = JSON.parse(res.read)
+      name = params[:name]
 
-      data.delete_if { |comp| comp['comp_name'].rindex(key).nil? }
+      data = transmit("#{host}/ochart/company/company_searchComp.do?operation=#{operation}&name=#{name}")
 
-      p "========== #{data.class} =========="
-      p data
-
+      # fixbug: 没有对name进行like处理。
+      data.delete_if { |comp| comp['comp_name'].rindex(name).nil? }
 
     elsif operation == "get"
       comp_id = params[:comp_id]
-      res = open(URI.encode("#{host}/ochart/company/company_searchComp.do?operation=#{operation}&comp_id=#{comp_id}"))
-      data = JSON.parse(res.read)
 
-      p "========== #{data.class} =========="
-      p data
+      data = transmit("#{host}/ochart/company/company_searchComp.do?operation=#{operation}&comp_id=#{comp_id}")
     end
 
     render json: data
@@ -35,36 +47,20 @@ class ProxyController < ApplicationController
     operation = params[:operation]
 
     if operation == "search"
-      # &key=xxx&city=xxx&product=xxx
       key     = params[:key]
       city    = params[:city]
       product = params[:product]
-      res = open(URI.encode("#{host}/bids/bids/bids_findBidsByCondition.do?operation=#{operation}&key=#{key}&city=#{city}&product=#{product}"))
-      data = JSON.parse(res.read)
 
-      p "========== #{data.class} =========="
-      p data
+      data = transmit("#{host}/bids/bids/bids_findBidsByCondition.do?operation=#{operation}&key=#{key}&city=#{city}&product=#{product}")
     elsif operation == "book"
-      # &id=xxx,xxx&time=YYYYMMDDhhmmss
       id   = params[:id]
       time = params[:time]
-      res = open(URI.encode("#{host}/bids/bids/bids_findBidsByCondition.do?operation=#{operation}&id=#{id}&time=#{time}"))
-      data = JSON.parse(res.read)
 
-      p "========== #{data.class} =========="
-      p data
-
+      data = transmit("#{host}/bids/bids/bids_findBidsByCondition.do?operation=#{operation}&id=#{id}&time=#{time}")
     elsif operation == "get"
-      # &id=xxx
       id = params[:id]
-      res = open(URI.encode("#{host}/bids/bids/bids_findBidsByCondition.do?operation=#{operation}&id=#{id}"))
-      data = JSON.parse(res.read)
 
-      data[:created_time] = Time.new
-      data[:bid_content] = "<html/>"
-
-      p "========== #{data.class} =========="
-      p data
+      data = transmit("#{host}/bids/bids/bids_findBidsByCondition.do?operation=#{operation}&id=#{id}")
     end
 
     render json: data
