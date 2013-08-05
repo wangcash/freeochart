@@ -20,6 +20,8 @@ class ProxyController < ApplicationController
       data = nil
     end
 
+    sleep(2)
+
     return data
   end
 
